@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ToDoItemService } from './to-do-item.service';
 import { PostService } from './post.service';
 import { Post } from './post';
 
