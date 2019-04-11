@@ -39,7 +39,7 @@ router.get('/posts', function(req,res){
 router.post('/sdpost',function(req,res){
     console.log('posting a post');
     var newpost = new post(req.body);
-    console.log(newpost);
+    console.log(newpost.content);
     /*newpost.name = "testing";
     newpost.content= "testing";*/
     newpost.save(function(err, insertedpost){       //save into mongodb
@@ -53,10 +53,14 @@ router.post('/sdpost',function(req,res){
 
 /*update db api*/
 router.put('/post/:id',function(req,res){
-    console.log("update a post");
+    console.log('updating a post');
+    var newpost = new post(req.body);
+    console.log(newpost.id);
+    console.log(req.params.id);
+
     post.findByIdAndUpdate(req.params.id,
     {
-        $set: {name:req.body.name}    //new values to get updated
+        $set: {content:newpost.content}    //new values to get updated
     },
     {
         new:true   //to get the updated post object if false it will give the previous values

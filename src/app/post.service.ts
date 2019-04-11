@@ -11,6 +11,7 @@ export class PostService {
   private geturl = "http://localhost:3000/api/posts/";
   private posturl = "http://localhost:3000/api/sdpost/";
   private deleteurl = "http://localhost:3000/api/delpost";
+  private editurl = "http://localhost:3000/api/post";
 
   constructor(private http : HttpClient) { }  //instance of an http to send get requests
 
@@ -36,5 +37,14 @@ export class PostService {
     deleteposts(id){
       console.log("delete");
       return this.http.delete(`${this.deleteurl}/${id}`);
+    }
+
+    updateposts(id,content){
+      console.log("edit");
+      const obj ={
+        content : content, 
+      };
+      return this.http.put(`${this.editurl}/${id}`,obj)
+      .subscribe(res => console.log("Done updating"));
     }
 }
