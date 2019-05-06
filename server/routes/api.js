@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const post = require('../models/posts');
 const user = require('../models/user');
 const vehicle = require('../models/vehicle');
+const appointment = require('../models/appointment');
 
 /*db connection string*/
 const db = "mongodb+srv://Nishadi:123456781@@cluster0-7dpxi.mongodb.net/test?retryWrites=true";
@@ -130,4 +131,18 @@ router.get('/count3',  function (req, res) {
         }
     });
 })
+
+router.get('/appointments',function(req,res){
+    console.log("getting appointments");
+    appointment.find({})
+    .exec(function (err, appntm) {
+        if (err) {
+            console.log("error retriving");
+        } else {
+            res.json(appntm);
+            return appntm;
+        }
+    });
+})
+
 module.exports = router;

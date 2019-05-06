@@ -9,16 +9,19 @@
 <body class="w3-light-grey">
 
   <!-- Sidebar/menu -->
+
   <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
 
     <nav class="navbar navbar-expand-lg navbar-light">
-      <p><b> Rio Top Servise Station</b> </p>
+      <div class="header text-center" style=" margin : 5px">
+        <h2 class="title" style="margin-top : 15px;margin-bottom: 0px">Rio Top Service Station</h2>
+      </div>
     </nav>
-    
+
     <div class="w3-bar-block">
-        <div class="c">
-            <p>WELLCOME TO RIOTOP</p>
-        </div>
+      <br>
+      <p>Admin: name</p>
+      <hr>
       <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
         onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
       <a class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Overview</a>
@@ -30,14 +33,17 @@
         View User</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="adminForumLogin()"><i class="fa fa-book fa-fw"></i> 
         Forum</a>
-      <a class="w3-bar-item w3-button w3-padding" (click)="salaryLogin()"><i class="fa fa-bell fa-fw"></i>  Salary</a>
+      <a class="w3-bar-item w3-button w3-padding" (click)="salaryLogin()"><i class="fa fa-bell fa-fw"></i>  Appointment Management</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="feesLogin()"><i class="fa fa-bank fa-fw"></i>  Fees</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="leavesLogin()"><i class="fa fa-history fa-fw"></i> Leaves</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="settingsLogin()"><i class="fa fa-cog fa-fw"></i> 
         Settings</a>
-        <br><br>
-        <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit" (click)='admindash()'>Sinhala Translate</button>
-        <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit" (click)='admindash()'>English Translate</button>
+      <br><br>
+      <ul>
+        <button class="btn btn-info btn-round" style="width:90%" (click)="switchLanguage('en')">Switch to
+          English</button>
+        <button class="btn btn-info btn-round" style="width:90%" (click)="switchLanguage('lk')">සිංහල පරිවර්තනය</button>
+      </ul>
     </div>
   </nav>
 
@@ -58,7 +64,7 @@
       <div class="w3-quarter">
         <div class="w3-container w3-red w3-padding-16">
           <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
-          <div class="w3-right" >
+          <div class="w3-right">
             <h3>{{numposts}}</h3>
           </div>
           <div class="w3-clear"></div>
@@ -77,7 +83,7 @@
       </div>
       <div class="w3-quarter">
         <div class="w3-container w3-teal w3-padding-16">
-          <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+          <div class="w3-left"><i class="fa fa-car w3-xxxlarge"></i></div>
           <div class="w3-right">
             <h3>{{numveh}}</h3>
           </div>
@@ -87,39 +93,158 @@
       </div>
       <div class="w3-quarter">
         <div class="w3-container w3-orange w3-text-white w3-padding-16">
-          <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+          <div class="w3-left"><i class="fa fa-book fa-fw w3-xxxlarge"></i></div>
           <div class="w3-right">
             <h3>{{result1}}</h3>
           </div>
           <div class="w3-clear"></div>
-          <h4>Students</h4>
+          <h4>Appointments</h4>
         </div>
       </div>
     </div>
 
-    <div class="w3-panel">
-      <div class="w3-row-padding" style="margin:0 -16px">
-        <div class="w3-third">
-          <img src="/assets/images/bg-title-01.jpg" style="width:100%" alt="Google Regional Map">
-        </div>
-        <div class="w3-twothird">
-          <h5><b>Student ID Numbers</b></h5>
-          <table class="w3-table w3-striped w3-white">
-
-            <li *ngFor="let x of StdNamesAndIDs| async">
-              <tr>
-                <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
-                <td class="space2">{{x.s_ID}}</td>
-                <td class="space2"><i>{{x.stdName}}</i></td>
-              </tr>
-            </li>
-
-          </table>
+    <div class="row">
+      <div class="col-6">
+        <div class="card card-chart">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-5">
+                <h4 class="card-title">System Statistics</h4>
+              </div>
+              <div class="col-7">
+                <h4 class="card-title">{{myDate | date:'MMM d, y, h:mm:ss a'}}</h4>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"></canvas>
+          </div>
         </div>
       </div>
+      
+      <div class="col-6">
+          <div class="card">
+            <div class="card-header">
+              <h4>Today's Appointments</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-full-width table-responsive" style="height :400px; overflow-y: auto; overflow-x: hidden">
+                <table class="table">
+                  <thead class="text-primary">
+                    <th class="text-center">
+                      Username
+                    </th>
+                    <th class="text-center">
+                      Time
+                    </th>
+                    <th class="text-center">
+                      Package
+                    </th>
+    
+                    <th>Cancel</th>
+                    <th>Done</th>
+    
+                  </thead>
+                  <tbody>
+                    <tr *ngFor='let x of appointments'>
+                      <td *ngIf="x.approved == true">{{x.username}}</td>
+                      <td *ngIf="x.approved == true" class="text-right">{{x.time}}</td>
+                      <td *ngIf="x.approved == true" class="text-right">{{x.package}}</td>
+                      <td *ngIf="x.approved == true">
+                        <button type="button" rel="tooltip" title="cancel appointment"
+                          class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" (click)="deletePost(x.id)">
+                          <i class="fa fa-remove"></i>
+                        </button>
+                      </td>
+                      <td *ngIf="x.approved == true">
+                        <button type="button" rel="tooltip" title="appointment done"
+                          class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" (click)="approveCrop(crop.id)">
+                          <i class="fa fa-check"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="w3-container">
+      <h5><b>Staff ID Numbers</b></h5>
+      <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Time</th>
+            <th>Package</th>
+          </tr>
+        </thead>
+
+        <li *ngFor="let x of appointmentsblabla | async">
+          <tr>
+            <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+            <td>{{x.username}}</td>
+            <td>{{x.time}}</td>
+            <td>{{x.package}}</td>
+          </tr>
+        </li>
+
+      </table>
+      <br>
     </div>
     <hr>
-<!--Table-->
+
+    <!---->
+    
+<!--2-->
+<div class="col-6">
+    <div class="card card-chart">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-5">
+            <h4 class="card-title">System Statistics</h4>
+          </div>
+          <div class="col-7">
+            <h4 class="card-title">{{myDate | date:'MMM d, y, h:mm:ss a'}}</h4>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-4">
+            <h5><strong>{{(totalMemCount | async)?.total}} </strong>Total Users</h5><br>
+            <h6><strong>{{(totalMemCount | async)?.admins}} </strong>System Admins</h6><br>
+            <h6><strong>{{(totalMemCount | async)?.farmers}} </strong>Farmers</h6><br>
+            <h6><strong>{{(totalMemCount | async)?.retailers}} </strong>Retailers</h6><br>
+            <h6><strong>{{(totalMemCount | async)?.both}} </strong>Dual Category</h6><br>
+            <h5><strong>{{(totalSaleCount | async)?.total}} </strong>Total Orders</h5><br>
+            <h6><strong>{{(totalSaleCount | async)?.sale}} </strong>Total Sales</h6><br>
+            <h6><strong>{{(totalSaleCount | async)?.want}} </strong>Total Wanted</h6><br>
+            <h5><strong>{{(totalPostCount | async)?.total}} </strong>Total Posts</h5><br>
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                [chartType]="doughnutChartType"></canvas>
+            </div>
+            <div class="row">
+              <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [legend]="barChartLegend" [chartType]="barChartType">
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!--Table-->
     <div class="row">
       <div class="col-lg-12">
         <div class="card">
@@ -134,17 +259,23 @@
                   <th>Date</th>
                   <th>Time</th>
                   <th>Package</th>
+                  <th>Approve/</th>
                 </tr>
               </thead>
+
               <tbody>
-                <tr>
-                  <td>Vishnu Serghei</td>
-                  <td>2012/01/01</td>
-                  <td>Member</td>
-                  <td>
-                    <span class="badge badge-success">Active</span>
-                  </td>
-                </tr>
+                <li *ngFor="let x of appointments">
+                  <tr>
+                    <td>{{x.username}}</td>
+                    <td>{{x.date}}</td>
+                    <td>{{x.time}}</td>
+                    <td>
+                      <span class="badge badge-success">{{x.package}}</span>
+                    </td>
+                    <td><button type="submit"></button></td>
+                  </tr>
+                </li>
+
                 <tr>
                   <td>Zbyněk Phoibos</td>
                   <td>2012/02/01</td>
@@ -169,16 +300,9 @@
                     <span class="badge badge-warning">Pending</span>
                   </td>
                 </tr>
-                <tr>
-                  <td>Aulus Agmundr</td>
-                  <td>2012/01/21</td>
-                  <td>Staff</td>
-                  <td>
-                    <span class="badge badge-success">Active</span>
-                  </td>
-                </tr>
               </tbody>
             </table>
+
             <nav>
               <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#">Prev</a></li>
@@ -194,24 +318,9 @@
           </div>
         </div>
       </div>
-      <div class="w3-container">
-        <h5><b>Staff ID Numbers</b></h5>
-        <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-
-          <li *ngFor="let x of StfNamesAndIDs| async">
-            <tr>
-              <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
-              <td class="space3">{{x.staff_ID}}</td>
-              <td class="space3">{{x.name}}</td>
-            </tr>
-          </li>
-
-        </table>
-        <br>
-      </div>
-      <hr>
 
       <br>
+
       <div class="w3-container w3-dark-grey w3-padding-32">
         <div class="w3-row">
           <div class="w3-container w3-third">

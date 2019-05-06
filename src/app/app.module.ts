@@ -13,6 +13,7 @@ import { AdmindashComponent } from './admindash/admindash.component';
 import { UserdashComponent } from './userdash/userdash.component';
 import { StockmanageComponent } from './stockmanage/stockmanage.component';
 import { ReportComponent } from './report/report.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ReportComponent } from './report/report.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

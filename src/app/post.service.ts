@@ -12,7 +12,7 @@ export class PostService {
   private deleteurl = "http://localhost:3000/api/delpost";
   private editurl = "http://localhost:3000/api/post";
   private url = "http://localhost:3000/api";
-  private url2 = "http://localhost:3000/api2";
+  //private url2 = "http://localhost:3000/api2";
 
   constructor(private http : HttpClient) { }  //instance of an http to send get requests
 
