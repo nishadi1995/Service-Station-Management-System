@@ -8,6 +8,7 @@ const post = require('../models/posts');
 const user = require('../models/user');
 const vehicle = require('../models/vehicle');
 const appointment = require('../models/appointment');
+const stockitem = require('../models/stockitem');
 
 /*db connection string*/
 const db = "mongodb+srv://Nishadi:123456781@@cluster0-7dpxi.mongodb.net/test?retryWrites=true";
@@ -91,7 +92,7 @@ router.delete('/delpost/:id', function (req, res) {
     });
 });
 
-/* ----------------------------------------------------------------------------*/
+/* -----------------------------------------------------------------------------------------*/
 
 /*getting number of posts*/
 router.get('/count1', function (req, res) {
@@ -107,7 +108,7 @@ router.get('/count1', function (req, res) {
 })
 
 /*getting number of registered users*/
-router.get('/count2',  function (req, res) {
+router.get('/count2', function (req, res) {
     console.log("geting user count");
     user.countDocuments(function (err, number) {
         if (err) {
@@ -120,7 +121,7 @@ router.get('/count2',  function (req, res) {
 })
 
 /*getting number of registered vehicles*/
-router.get('/count3',  function (req, res) {
+router.get('/count3', function (req, res) {
     console.log("geting vehicle count");
     vehicle.countDocuments(function (err, number) {
         if (err) {
@@ -132,17 +133,44 @@ router.get('/count3',  function (req, res) {
     });
 })
 
-router.get('/appointments',function(req,res){
+/*getting all the appointments*/
+router.get('/appointments', function (req, res) {
     console.log("getting appointments");
     appointment.find({})
-    .exec(function (err, appntm) {
+        .exec(function (err, appntm) {
+            if (err) {
+                console.log("error retriving");
+            } else {
+                res.json(appntm);
+                return appntm;
+            }
+        });
+})
+
+/*sending stock item to DB*/
+router.post('/addItem', function (req, res) {
+    console.log('adding an item');
+    var newitem = new stockitem(req.body);
+    newitem.save(function (err, insertedpost) {       //save into mongodb
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(insertedpost);
+        }
+    });
+});
+
+/*getting all the stock items*/
+router.get('/getitems', function (req, res) {
+    console.log('getting items');
+    stockitem.find({})
+        .exec(function (err, items){
         if (err) {
             console.log("error retriving");
         } else {
-            res.json(appntm);
-            return appntm;
+            return items;
         }
     });
-})
+});
 
 module.exports = router;

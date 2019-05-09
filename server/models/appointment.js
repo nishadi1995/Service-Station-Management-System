@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 //creating a new schema for posts data in mongodb 
 const appointmentSchema = new Schema({
     username :String,
-    date: Date,
+    date: String,
     time:String,
     package:String
 });

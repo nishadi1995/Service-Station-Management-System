@@ -8,6 +8,7 @@ import { UserdashComponent } from './userdash/userdash.component';
 import { AdmindashComponent } from './admindash/admindash.component';
 import { StockmanageComponent } from './stockmanage/stockmanage.component';
 import { ReportComponent } from './report/report.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const router: Routes = [
   { path: '',   redirectTo: '/homepage', pathMatch: 'full' },
@@ -17,7 +18,8 @@ const router: Routes = [
   {path:'admindash',component:AdmindashComponent},
   {path:'userdash',component:UserdashComponent},
   {path:'stock',component:StockmanageComponent},
-  {path:'report',component:ReportComponent}
+  {path:'report',component:ReportComponent},
+  {path:'sidebar',component:SidebarComponent}
 
 ];
 

@@ -14,6 +14,7 @@ import { UserdashComponent } from './userdash/userdash.component';
 import { StockmanageComponent } from './stockmanage/stockmanage.component';
 import { ReportComponent } from './report/report.component';
 import { ChartsModule } from 'ng2-charts';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ChartsModule } from 'ng2-charts';
     AdmindashComponent,
     UserdashComponent,
     StockmanageComponent,
-    ReportComponent
+    ReportComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

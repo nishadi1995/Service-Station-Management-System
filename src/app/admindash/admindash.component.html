@@ -27,15 +27,16 @@
       <a class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Overview</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="managestock()"><i class="fa fa-users fa-fw"></i> 
         Stock Management</a>
-      <a class="w3-bar-item w3-button w3-padding" (click)="attendanceLogin()"><i class="fa fa-eye fa-fw"></i> 
+      <a class="w3-bar-item w3-button w3-padding" (click)="genreports()"><i class="fa fa-eye fa-fw"></i> 
         Genarate Reports</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="yearPlanLogin()"><i class="fa fa-bullseye fa-fw"></i>
         View User</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="adminForumLogin()"><i class="fa fa-book fa-fw"></i> 
         Forum</a>
-      <a class="w3-bar-item w3-button w3-padding" (click)="salaryLogin()"><i class="fa fa-bell fa-fw"></i>  Appointment Management</a>
-      <a class="w3-bar-item w3-button w3-padding" (click)="feesLogin()"><i class="fa fa-bank fa-fw"></i>  Fees</a>
-      <a class="w3-bar-item w3-button w3-padding" (click)="leavesLogin()"><i class="fa fa-history fa-fw"></i> Leaves</a>
+      <a class="w3-bar-item w3-button w3-padding" (click)="salaryLogin()"><i class="fa fa-bell fa-fw"></i>  Appointment
+        Management</a>
+      <a class="w3-bar-item w3-button w3-padding" (click)="feesLogin()"><i class="fa fa-bank fa-fw"></i>  Bla bla</a>
+      <a class="w3-bar-item w3-button w3-padding" (click)="leavesLogin()"><i class="fa fa-history fa-fw"></i>Bla bla</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="settingsLogin()"><i class="fa fa-cog fa-fw"></i> 
         Settings</a>
       <br><br>
@@ -103,13 +104,32 @@
       </div>
     </div>
 
+    <div clas="row">
+      <div class="col-10">
+        <div class="card card-chart">
+          <div class="card-header">
+            <div class="row">
+              <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [legend]="barChartLegend" [chartType]="barChartType">
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+
+      </div>
+
+    </div>
+
     <div class="row">
       <div class="col-6">
         <div class="card card-chart">
           <div class="card-header">
             <div class="row">
               <div class="col-5">
-                <h4 class="card-title">System Statistics</h4>
+                <h4 class="card-title">Today's Appointments</h4>
               </div>
               <div class="col-7">
                 <h4 class="card-title">{{myDate | date:'MMM d, y, h:mm:ss a'}}</h4>
@@ -122,54 +142,55 @@
           </div>
         </div>
       </div>
-      
+
       <div class="col-6">
-          <div class="card">
-            <div class="card-header">
-              <h4>Today's Appointments</h4>
-            </div>
-            <div class="card-body">
-              <div class="table-full-width table-responsive" style="height :400px; overflow-y: auto; overflow-x: hidden">
-                <table class="table">
-                  <thead class="text-primary">
-                    <th class="text-center">
-                      Username
-                    </th>
-                    <th class="text-center">
-                      Time
-                    </th>
-                    <th class="text-center">
-                      Package
-                    </th>
-    
-                    <th>Cancel</th>
-                    <th>Done</th>
-    
-                  </thead>
-                  <tbody>
-                    <tr *ngFor='let x of appointments'>
-                      <td *ngIf="x.approved == true">{{x.username}}</td>
-                      <td *ngIf="x.approved == true" class="text-right">{{x.time}}</td>
-                      <td *ngIf="x.approved == true" class="text-right">{{x.package}}</td>
-                      <td *ngIf="x.approved == true">
-                        <button type="button" rel="tooltip" title="cancel appointment"
-                          class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" (click)="deletePost(x.id)">
-                          <i class="fa fa-remove"></i>
-                        </button>
-                      </td>
-                      <td *ngIf="x.approved == true">
-                        <button type="button" rel="tooltip" title="appointment done"
-                          class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" (click)="approveCrop(crop.id)">
-                          <i class="fa fa-check"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        <div class="card">
+          <div class="card-header">
+            <h4>Today's Appointments</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-full-width table-responsive" style="height :400px; overflow-y: auto; overflow-x: hidden">
+              <table class="table">
+                <thead class="text-primary">
+                  <th class="text-center">
+                    Username
+                  </th>
+                  <th class="text-center">
+                    Time
+                  </th>
+                  <th class="text-center">
+                    Package
+                  </th>
+
+                  <th>Cancel</th>
+                  <th>Done</th>
+
+                </thead>
+                <tbody>
+                  <tr *ngFor='let x of appointments'>
+                    <td *ngIf="x.approved == true">{{x.username}}</td>
+                    <td *ngIf="x.approved == true" class="text-right">{{x.time}}</td>
+                    <td *ngIf="x.approved == true" class="text-right">{{x.package}}</td>
+                    <td *ngIf="x.approved == true">
+                      <button type="button" rel="tooltip" title="cancel appointment"
+                        class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" (click)="deletePost(x.id)">
+                        <i class="fa fa-remove"></i>
+                      </button>
+                    </td>
+                    <td *ngIf="x.approved == true">
+                      <button type="button" rel="tooltip" title="appointment done"
+                        class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
+                        (click)="approveCrop(crop.id)">
+                        <i class="fa fa-check"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
+      </div>
     </div>
 
     <div class="w3-container">
@@ -199,49 +220,49 @@
     <hr>
 
     <!---->
-    
-<!--2-->
-<div class="col-6">
-    <div class="card card-chart">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-5">
-            <h4 class="card-title">System Statistics</h4>
-          </div>
-          <div class="col-7">
-            <h4 class="card-title">{{myDate | date:'MMM d, y, h:mm:ss a'}}</h4>
+
+    <!--2-->
+    <div class="col-6">
+      <div class="card card-chart">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-5">
+              <h4 class="card-title">System Statistics</h4>
+            </div>
+            <div class="col-7">
+              <h4 class="card-title">{{myDate | date:'MMM d, y, h:mm:ss a'}}</h4>
+            </div>
           </div>
         </div>
-      </div>
-      <hr>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-4">
-            <h5><strong>{{(totalMemCount | async)?.total}} </strong>Total Users</h5><br>
-            <h6><strong>{{(totalMemCount | async)?.admins}} </strong>System Admins</h6><br>
-            <h6><strong>{{(totalMemCount | async)?.farmers}} </strong>Farmers</h6><br>
-            <h6><strong>{{(totalMemCount | async)?.retailers}} </strong>Retailers</h6><br>
-            <h6><strong>{{(totalMemCount | async)?.both}} </strong>Dual Category</h6><br>
-            <h5><strong>{{(totalSaleCount | async)?.total}} </strong>Total Orders</h5><br>
-            <h6><strong>{{(totalSaleCount | async)?.sale}} </strong>Total Sales</h6><br>
-            <h6><strong>{{(totalSaleCount | async)?.want}} </strong>Total Wanted</h6><br>
-            <h5><strong>{{(totalPostCount | async)?.total}} </strong>Total Posts</h5><br>
-          </div>
-          <div class="col-8">
-            <div class="row">
-              <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
-                [chartType]="doughnutChartType"></canvas>
+        <hr>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4">
+              <h5><strong>{{(totalMemCount | async)?.total}} </strong>Total Users</h5><br>
+              <h6><strong>{{(totalMemCount | async)?.admins}} </strong>System Admins</h6><br>
+              <h6><strong>{{(totalMemCount | async)?.farmers}} </strong>Farmers</h6><br>
+              <h6><strong>{{(totalMemCount | async)?.retailers}} </strong>Retailers</h6><br>
+              <h6><strong>{{(totalMemCount | async)?.both}} </strong>Dual Category</h6><br>
+              <h5><strong>{{(totalSaleCount | async)?.total}} </strong>Total Orders</h5><br>
+              <h6><strong>{{(totalSaleCount | async)?.sale}} </strong>Total Sales</h6><br>
+              <h6><strong>{{(totalSaleCount | async)?.want}} </strong>Total Wanted</h6><br>
+              <h5><strong>{{(totalPostCount | async)?.total}} </strong>Total Posts</h5><br>
             </div>
-            <div class="row">
-              <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-                [legend]="barChartLegend" [chartType]="barChartType">
-              </canvas>
+            <div class="col-8">
+              <div class="row">
+                <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType"></canvas>
+              </div>
+              <div class="row">
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                  [legend]="barChartLegend" [chartType]="barChartType">
+                </canvas>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
     <!--Table-->
