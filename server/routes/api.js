@@ -151,11 +151,11 @@ router.get('/appointments', function (req, res) {
 router.post('/addItem', function (req, res) {
     console.log('adding an item');
     var newitem = new stockitem(req.body);
-    newitem.save(function (err, insertedpost) {       //save into mongodb
+    newitem.save(function (err, inserteditem) {       //save into mongodb
         if (err) {
             console.log(err);
         } else {
-            res.json(insertedpost);
+            res.json(inserteditem);
         }
     });
 });
@@ -168,6 +168,7 @@ router.get('/getitems', function (req, res) {
         if (err) {
             console.log("error retriving");
         } else {
+            res.json(items);
             return items;
         }
     });

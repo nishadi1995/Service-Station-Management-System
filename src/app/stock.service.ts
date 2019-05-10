@@ -14,7 +14,7 @@ export class StockService {
       .subscribe(res=>console.log('done adding'));
   }
 
-  /*public getstock(){
-    return this.http.get(`${this.url}/getitems`);
-  }*/
+  public getstock(){
+    return this.http.get(`${this.url}/getitems`);      //returning without an stock item interface
+  }
 }

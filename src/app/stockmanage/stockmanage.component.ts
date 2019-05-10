@@ -13,15 +13,20 @@ export class StockmanageComponent implements OnInit {
   constructor(private _stockservice: StockService) { }
 
   ngOnInit() {
-   /* this._stockservice.getstock()
+   this._stockservice.getstock()
     .subscribe((stock)=>{
       this.stockitems= stock;
-    })*/
+    })
   }
 
-  async addItem(form){
+ addItem(form){
+    form.value.availableAmount = form.value.itemAmount;
     var formData = form.value;
     this._stockservice.addStock(formData);
+    alert("Successfully added an item!");
   }
 
+  reduceItem(){
+    console.log(this.stockitems[0]);
+  }
 }

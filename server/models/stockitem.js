@@ -6,9 +6,10 @@ const Schema = mongoose.Schema;
 const stockitemSchema = new Schema ({
     itemID:String,
     itemName:String,
-    itemAmount: String,
+    itemAmount: Number,
     totalCost: Number,
-    dealersName:String
+    dealersName:String,
+    availableAmount:String
 });
 
 //(name of the model, a post model is going to have a name and content, collection name in db)

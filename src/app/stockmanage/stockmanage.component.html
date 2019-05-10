@@ -22,11 +22,12 @@
                                 <input type="text" class="form-control" name="itemName" style="width:80%" ngModel
                                     required>
                             </div>
-                            <strong>Amount :</strong>
+                            <strong>Amount (l/peices) :</strong>
                             <div class="form-group">
                                 <input type="text" class="form-control" name="itemAmount" style="width:80%" ngModel
                                     required>
                             </div>
+
                             <strong>Total Cost (Rs):</strong>
                             <div class="form-group">
                                 <input type="text" class="form-control" name="totalCost" style="width:80%" ngModel
@@ -37,7 +38,10 @@
                                 <input type="text" class="form-control" name="dealersName" style="width:80%" ngModel
                                     required>
                             </div>
-                            <br>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="availableAmount"
+                                    style="visibility:hidden">
+                            </div>
                             <button [disabled]="frm.invalid" class="btn btn-primary btn-round">Add Item</button>
                         </form>
                     </div>
@@ -47,11 +51,25 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Oops! We are running out of..</h4>
+                        <h4>Consumed Item</h4>
                     </div>
                     <div class="card-body">
+                        <form #form="ngForm" (ngSubmit)="reduceItem(form)">
 
-
+                            <strong>Item ID :</strong>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="itemID" style="width:80%" ngModel
+                                    required>
+                            </div>
+                           
+                            <strong>Amount(L/peices) :</strong>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="itemAmount" style="width:80%" ngModel
+                                    required>
+                            </div>
+                          
+                            <button [disabled]="form.invalid" class="btn btn-primary btn-round">Reduce Item</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -88,11 +106,11 @@
                                 </th>
                             </thead>
                             <tbody>
-                                <tr *ngFor='let item of stockitems | async'>
-                                    <td>{{item.itemID}}</td>
-                                    <td>{{item.itemName}}</td>
-                                    <td>{{item.itemAmount}}</td>
-                                    <td></td>
+                                <tr *ngFor='let item of stockitems'>
+                                    <td class="text-center">{{item.itemID}}</td>
+                                    <td class="text-center">{{item.itemName}}</td>
+                                    <td class="text-center">{{item.itemAmount}}</td>
+                                    <td class="text-center">{{item.availableAmount}}</td>
                                     <td class="text-center">
                                         <button type="button" rel="tooltip" title="Delete Item From Store"
                                             class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
