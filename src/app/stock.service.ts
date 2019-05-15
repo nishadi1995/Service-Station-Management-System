@@ -17,4 +17,8 @@ export class StockService {
   public getstock(){
     return this.http.get(`${this.url}/getitems`);      //returning without an stock item interface
   }
+
+  public deletestock(id){
+   return this.http.delete(`${this.url}/deletestock/${id}`);
+  }
 }

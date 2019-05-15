@@ -174,4 +174,16 @@ router.get('/getitems', function (req, res) {
     });
 });
 
+/*deleting stock item*/
+router.delete('/deletestock/:id', function (req, res) {
+    console.log('deleting a stock item');
+    stockitem.findByIdAndRemove(req.params.id, function (err, deleteditem) {
+        if (err) {
+            res.send("Error deleting item");
+        } else {
+            res.json(deleteditem);
+        }
+    });
+});
+
 module.exports = router;

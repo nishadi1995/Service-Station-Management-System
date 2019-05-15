@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Params } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +9,7 @@ import { Router, Params } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private translate:TranslateService) { }
 
   ngOnInit() {
   }
@@ -26,5 +27,9 @@ export class SidebarComponent implements OnInit {
   admindash() {
     console.log("dashboard");
     this.router.navigate(["admindash"]);
+  }
+
+  switchLanguage(language: string) {
+    this.translate.use(language);
   }
 }

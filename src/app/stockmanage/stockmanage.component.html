@@ -106,17 +106,18 @@
                                 </th>
                             </thead>
                             <tbody>
-                                <tr *ngFor='let item of stockitems'>
+                                <tr *ngFor='let item of stockitems' [attr.id]="item.id">
                                     <td class="text-center">{{item.itemID}}</td>
                                     <td class="text-center">{{item.itemName}}</td>
                                     <td class="text-center">{{item.itemAmount}}</td>
                                     <td class="text-center">{{item.availableAmount}}</td>
                                     <td class="text-center">
-                                        <button type="button" rel="tooltip" title="Delete Item From Store"
-                                            class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
-                                            (click)="deleteCrop(crop.id)">
+                                        <button type="button" rel="tooltip" title="Delete Item From Stock"
+                                            class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" style="margin-right: 7px"
+                                            (click)="deleteItem(item._id)">
                                             <i class="fa fa-remove"></i>
                                         </button>
+
                                         <button type="button" rel="tooltip" title="Edit Item"
                                             class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
                                             (click)="approveCrop(crop.id)">
@@ -126,8 +127,8 @@
                                     <td class="text-center">
                                         <button class="btn btn-info btn-round" (click)="open(info)">More Info</button>
                                     </td>
-
                                 </tr>
+                                <a style="color:red">{{deleteMessage}}</a>
                             </tbody>
                         </table>
                     </div>

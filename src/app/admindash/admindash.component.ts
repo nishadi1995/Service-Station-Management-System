@@ -9,6 +9,8 @@ import { AppointmentsService } from '../appointments.service';
 import { Post } from '../post';
 import { Appointment } from '../appointment';   //not neccessary if we use the other method
 
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-admindash',
   templateUrl: './admindash.component.html',
@@ -33,7 +35,7 @@ export class AdmindashComponent implements OnInit {
   Pcount = 0;
   Fcount = 0;
 
-  constructor(private router: Router, private _postservice: PostService, private _appointmentservice: AppointmentsService) { }
+  constructor(private router: Router, private translate:TranslateService,private _postservice: PostService, private _appointmentservice: AppointmentsService) { }
 
   /*doughnut chart data*/
   public doughnutChartLabels = ['Gold', 'Silver', 'Platinum', 'Free'];
@@ -104,5 +106,9 @@ export class AdmindashComponent implements OnInit {
   genreports() {
     console.log("report");
     this.router.navigate(["report"]);
+  }
+
+  switchLanguage(language: string) {
+    this.translate.use(language);
   }
 }
