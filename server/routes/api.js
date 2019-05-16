@@ -186,4 +186,48 @@ router.delete('/deletestock/:id', function (req, res) {
     });
 });
 
+/*updating stock item*/
+router.put('/updatestock/:id', function (req, res) {
+    console.log('updating a stock item');
+    var newamount = new stockitem(req.body);
+    stockitem.findByIdAndUpdate(req.params.id, 
+        {
+            $set:{availableAmount: newamount.availableAmount}
+        },
+        {
+            new: true      //to get the updated stock object if false it will give the previous values
+        },
+        function (err, updatedamount) {
+            if (err) {
+                res.send("Error updating amount");
+            } else {
+                res.json(updatedamount);
+            }
+        }
+    );
+});
+
 module.exports = router;
+
+router.put('/post/:id', function (req, res) {
+    console.log('updating a post');
+    var newpost = new post(req.body);
+    console.log(newpost.id);
+    console.log(req.params.id);
+
+    post.findByIdAndUpdate(req.params.id,
+        {
+            $set: { content: newpost.content }    //new values to get updated
+        },
+        {
+            new: true   //to get the updated post object if false it will give the previous values
+        },
+        function (err, updatedpost) {
+            if (err) {
+                res.send("Error updating post");
+            } else {
+                res.json(updatedpost);
+            }
+        }
+    );
+});

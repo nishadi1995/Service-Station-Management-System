@@ -37,6 +37,6 @@ export class AppComponent {
 
   updateItem(id,pos){
     this._postservice.updateposts(this.id,pos);
-      console.log("updated");
+    console.log("updated");
   }
 }

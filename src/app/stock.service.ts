@@ -21,4 +21,13 @@ export class StockService {
   public deletestock(id){
    return this.http.delete(`${this.url}/deletestock/${id}`);
   }
+
+  public updatestock(id,amount){
+    const obj ={
+      availableAmount : amount, 
+    };
+    return this.http.put(`${this.url}/updatestock/${id}`,obj)
+    .subscribe(res => console.log("Done updating"));
+  }
+
 }

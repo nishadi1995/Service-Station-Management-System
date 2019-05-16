@@ -10,7 +10,7 @@
                         <h4>Add New Item</h4>
                     </div>
                     <div class="card-body">
-                        <form #frm="ngForm" (ngSubmit)="addItem(frm)">
+                        <form #frm="ngForm" (ngSubmit)="addItem(frm)" name="form_stock_add">
 
                             <strong>Item ID :</strong>
                             <div class="form-group">
@@ -106,7 +106,7 @@
                                 </th>
                             </thead>
                             <tbody>
-                                <tr *ngFor='let item of stockitems' [attr.id]="item.id">
+                                <tr *ngFor='let item of stockitems' >
                                     <td class="text-center">{{item.itemID}}</td>
                                     <td class="text-center">{{item.itemName}}</td>
                                     <td class="text-center">{{item.itemAmount}}</td>
@@ -125,8 +125,43 @@
                                         </button>
                                     </td>
                                     <td class="text-center">
-                                        <button class="btn btn-info btn-round" (click)="open(info)">More Info</button>
+                                        <button class="btn btn-info btn-round" (click)="openLg(info)">More Info</button>
                                     </td>
+
+                                    <ng-template #info let-c="close" let-d="dismiss">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title text-center">{{item.itemName}}'s Expanded Details</h5>
+                                          <button type="button" class="close" (click)="d('Cross click')">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="row" style="padding:5px">
+                                          <div class="col-6">
+                                            <strong>Item ID : </strong>{{item.itemID}}<br>
+                                            <strong>Item Name : </strong>{{item.itemName}}<br>
+                                            <strong>Amount Bought : </strong>{{item.itemAmount}}<br>
+                                            <strong> available Amount : </strong>{{item.availableAmount}}<br>
+                                          </div> 
+                                          <div class="col-5">
+                                            <strong>Total Cost : </strong><br>{{item.totalCost}}<br>
+                                            <strong>Date : </strong><br>{{item.totalCost}}<br>
+
+                                          </div><br>
+                                          <div class="col-4">
+                                            <strong>Dealer's Name : </strong>{{item.dealersName}}<br>
+                                          </div>
+                                          <div class="col-4">
+                                          </div>
+                                        </div>
+                                        <div class="row" style="padding:5px">
+                                        </div>
+                                        <div class="modal-footer">
+                                          <div class="divider"></div>
+                                          <div class="right-side">
+                                            <button type="button" class="btn" style="color: red" (click)="c('Close click')">Dismiss</button>
+                                          </div>
+                                        </div>
+                                      </ng-template>
                                 </tr>
                                 <a style="color:red">{{deleteMessage}}</a>
                             </tbody>

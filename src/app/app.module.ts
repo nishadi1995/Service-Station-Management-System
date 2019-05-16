@@ -18,6 +18,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NgbModule, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     StockmanageComponent,
     ReportComponent,
     SidebarComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     FormsModule,
     HttpClientModule,
     ChartsModule,
+    
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -44,6 +47,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
         deps: [HttpClient]
       }
     }),
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,7 +9,7 @@ const stockitemSchema = new Schema ({
     itemAmount: Number,
     totalCost: Number,
     dealersName:String,
-    availableAmount:String
+    availableAmount:Number
 });
 
 //(name of the model, a post model is going to have a name and content, collection name in db)
