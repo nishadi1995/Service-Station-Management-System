@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ToDoItemService } from './to-do-item.service';
 import { PostService } from './post.service';
 import { Post } from './post';
 
@@ -14,7 +13,7 @@ export class AppComponent {
   title = 'service-station';
 
   posts:Post[];
-  id='5cae8f916a2ef812e87929b1';
+  id='5cae8ea86a2ef812e87929af';
 
   constructor(private _postservice: PostService) {
   }
@@ -34,5 +33,10 @@ export class AppComponent {
     this._postservice.deleteposts(this.id).subscribe(res=>{
       console.log("deleted");
     });
+  }
+
+  updateItem(id,pos){
+    this._postservice.updateposts(this.id,pos);
+    console.log("updated");
   }
 }

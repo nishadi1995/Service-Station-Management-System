@@ -3,4 +3,3 @@ export interface Post {
    name : String;
    content:String;
 }
-

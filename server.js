@@ -4,9 +4,14 @@ const bodyParser = require('body-parser');
 
 const api = require('./server/routes/api');
 
+/* tried to add another api. But didn't worked
+const api2 = require('./server/routes/api2');*/
+
+
 const port = 3000;
 
 const app = express();
+
 /*to prevent CORS error*/
 var cors = require('cors');
 app.use(cors());
@@ -21,6 +26,8 @@ app.use(bodyParser.json());
 
 //for api router
 app.use('/api',api);
+
+//app.use('/api2',api2);      attempted to add another api.Didn't worked
 
 //for any other router
 app.get('*',(req,res)=>{
