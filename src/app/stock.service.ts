@@ -18,6 +18,10 @@ export class StockService {
     return this.http.get(`${this.url}/getitems`);      //returning without an stock item interface
   }
 
+  public getfinisheditems(){
+    return this.http.get(`${this.url}/getfinisheditems`); 
+  }
+
   public deletestock(id){
    return this.http.delete(`${this.url}/deletestock/${id}`);
   }

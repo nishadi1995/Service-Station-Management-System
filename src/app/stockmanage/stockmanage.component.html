@@ -47,30 +47,64 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Consumed Item</h4>
+                        <h4>Oops We are running out of</h4>
                     </div>
                     <div class="card-body">
-                        <form #form="ngForm" (ngSubmit)="reduceItem(form)">
+                        <div id="content">
+                            <div *ngFor='let fitem of finishedstockitems'>
 
-                            <strong>Item ID :</strong>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="itemID" style="width:80%" ngModel
-                                    required>
+                                <div class="notification green">
+                                    <div class="info">
+                                        <h1>{{fitem.itemName}}</h1>
+                                        <p class="text-center">Item ID : {{fitem.itemID}}</p>
+                                        <p class="text-center">availableAmount : {{fitem.availableAmount}}</p>
+                                    </div>
+                                    <div class="icon" [ngStyle]="{'background-color': getColor(fitem.availableAmount) }">
+                                        <i class="fa fa-gears"></i>
+                                    </div>
+                                </div>
+                                
                             </div>
-                           
-                            <strong>Amount(L/peices) :</strong>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="itemAmount" style="width:80%" ngModel
-                                    required>
-                            </div>
-                          
-                            <button [disabled]="form.invalid" class="btn btn-primary btn-round">Reduce Item</button>
-                        </form>
+
+                        </div>
+                        
                     </div>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Consumed Item</h4>
+                </div>
+                <div class="card-body">
+                    <form #form="ngForm" (ngSubmit)="reduceItem(form)">
+                        <div class="row">
+                            <div class="col-4">
+                                <strong>Item ID :</strong>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="itemID" style="width:7cm" ngModel
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <strong>Amount(L/peices) :</strong>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="itemAmount" style="width:7cm" ngModel
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <br>
+                                <button [disabled]="form.invalid" class="btn btn-primary btn-round">Reduce Item</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -106,15 +140,15 @@
                                 </th>
                             </thead>
                             <tbody>
-                                <tr *ngFor='let item of stockitems' >
+                                <tr *ngFor='let item of stockitems'>
                                     <td class="text-center">{{item.itemID}}</td>
                                     <td class="text-center">{{item.itemName}}</td>
                                     <td class="text-center">{{item.itemAmount}}</td>
                                     <td class="text-center">{{item.availableAmount}}</td>
                                     <td class="text-center">
                                         <button type="button" rel="tooltip" title="Delete Item From Stock"
-                                            class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" style="margin-right: 7px"
-                                            (click)="deleteItem(item._id)">
+                                            class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
+                                            style="margin-right: 7px" (click)="deleteItem(item._id)">
                                             <i class="fa fa-remove"></i>
                                         </button>
 
@@ -130,38 +164,40 @@
 
                                     <ng-template #info let-c="close" let-d="dismiss">
                                         <div class="modal-header">
-                                          <h5 class="modal-title text-center">{{item.itemName}}'s Expanded Details</h5>
-                                          <button type="button" class="close" (click)="d('Cross click')">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
+                                            <h5 class="modal-title text-center">{{item.itemName}}'s Expanded Details
+                                            </h5>
+                                            <button type="button" class="close" (click)="d('Cross click')">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="row" style="padding:5px">
-                                          <div class="col-6">
-                                            <strong>Item ID : </strong>{{item.itemID}}<br>
-                                            <strong>Item Name : </strong>{{item.itemName}}<br>
-                                            <strong>Amount Bought : </strong>{{item.itemAmount}}<br>
-                                            <strong> available Amount : </strong>{{item.availableAmount}}<br>
-                                          </div> 
-                                          <div class="col-5">
-                                            <strong>Total Cost : </strong><br>{{item.totalCost}}<br>
-                                            <strong>Date : </strong><br>{{item.totalCost}}<br>
+                                            <div class="col-6">
+                                                <strong>Item ID : </strong>{{item.itemID}}<br>
+                                                <strong>Item Name : </strong>{{item.itemName}}<br>
+                                                <strong>Amount Bought : </strong>{{item.itemAmount}}<br>
+                                                <strong> available Amount : </strong>{{item.availableAmount}}<br>
+                                            </div>
+                                            <div class="col-5">
+                                                <strong>Total Cost : </strong><br>{{item.totalCost}}<br>
+                                                <strong>Date : </strong><br>{{item.totalCost}}<br>
 
-                                          </div><br>
-                                          <div class="col-4">
-                                            <strong>Dealer's Name : </strong>{{item.dealersName}}<br>
-                                          </div>
-                                          <div class="col-4">
-                                          </div>
+                                            </div><br>
+                                            <div class="col-4">
+                                                <strong>Dealer's Name : </strong>{{item.dealersName}}<br>
+                                            </div>
+                                            <div class="col-4">
+                                            </div>
                                         </div>
                                         <div class="row" style="padding:5px">
                                         </div>
                                         <div class="modal-footer">
-                                          <div class="divider"></div>
-                                          <div class="right-side">
-                                            <button type="button" class="btn" style="color: red" (click)="c('Close click')">Dismiss</button>
-                                          </div>
+                                            <div class="divider"></div>
+                                            <div class="right-side">
+                                                <button type="button" class="btn" style="color: red"
+                                                    (click)="c('Close click')">Dismiss</button>
+                                            </div>
                                         </div>
-                                      </ng-template>
+                                    </ng-template>
                                 </tr>
                                 <a style="color:red">{{deleteMessage}}</a>
                             </tbody>

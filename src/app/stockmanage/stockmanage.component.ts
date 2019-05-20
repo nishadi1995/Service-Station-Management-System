@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class StockmanageComponent implements OnInit {
 
   stockitems: any;
+  finishedstockitems:any;
   deleteMessage: string;
   closeResult: string;
 
@@ -22,6 +23,12 @@ export class StockmanageComponent implements OnInit {
       .subscribe((stock) => {
         this.stockitems = stock;
       })
+
+    this._stockservice.getfinisheditems()
+      .subscribe((fstock)=>{
+        this.finishedstockitems = fstock;
+      })
+
   }
 
   addItem(form) {
@@ -70,4 +77,19 @@ export class StockmanageComponent implements OnInit {
   openLg(content) {
     this.modalService.open(content, { size: 'lg' })
   }
+
+  /*change colors in notification bars*/
+  getColor(limit){
+   switch (limit%4){
+    case 0:
+     return '#9f093e';
+    case 1:
+     return '#006a35';
+    case 2:
+     return '#004080';
+    case 3:
+    return '#770077';
+    }
+  }
+
 }

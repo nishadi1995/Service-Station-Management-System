@@ -164,14 +164,14 @@ router.post('/addItem', function (req, res) {
 router.get('/getitems', function (req, res) {
     console.log('getting items');
     stockitem.find({})
-        .exec(function (err, items){
-        if (err) {
-            console.log("error retriving");
-        } else {
-            res.json(items);
-            return items;
-        }
-    });
+        .exec(function (err, items) {
+            if (err) {
+                console.log("error retriving");
+            } else {
+                res.json(items);
+                return items;
+            }
+        });
 });
 
 /*deleting stock item*/
@@ -190,9 +190,9 @@ router.delete('/deletestock/:id', function (req, res) {
 router.put('/updatestock/:id', function (req, res) {
     console.log('updating a stock item');
     var newamount = new stockitem(req.body);
-    stockitem.findByIdAndUpdate(req.params.id, 
+    stockitem.findByIdAndUpdate(req.params.id,
         {
-            $set:{availableAmount: newamount.availableAmount}
+            $set: { availableAmount: newamount.availableAmount }
         },
         {
             new: true      //to get the updated stock object if false it will give the previous values
@@ -207,27 +207,24 @@ router.put('/updatestock/:id', function (req, res) {
     );
 });
 
-module.exports = router;
-
-router.put('/post/:id', function (req, res) {
-    console.log('updating a post');
-    var newpost = new post(req.body);
-    console.log(newpost.id);
-    console.log(req.params.id);
-
-    post.findByIdAndUpdate(req.params.id,
-        {
-            $set: { content: newpost.content }    //new values to get updated
-        },
-        {
-            new: true   //to get the updated post object if false it will give the previous values
-        },
-        function (err, updatedpost) {
+/*getting items, close to finish*/
+router.get('/getfinisheditems', function (req, res) {
+    console.log('getting items,close to finish');
+    stockitem.find({
+        $expr: { $lt: ["$availableAmount","$limit"]}   //find documents where availableAmount is less than limit
+            //availableAmount: {$lt : limit}
+           /* {$project: {ab: {$cmp : ['$availableAmount' , '$limit']}}},
+            {$match: {ab :{$lt : 0}}}*/
+           //$where: function() {this.availableAmount < this.limit}
+    }
+    ).exec(function (err, items) {
             if (err) {
-                res.send("Error updating post");
+                console.log(err);
             } else {
-                res.json(updatedpost);
+                res.json(items);
+                return items;
             }
-        }
-    );
+        });
 });
+
+module.exports = router;
