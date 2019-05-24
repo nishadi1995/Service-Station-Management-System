@@ -151,6 +151,7 @@ router.get('/appointments', function (req, res) {
 router.post('/addItem', function (req, res) {
     console.log('adding an item');
     var newitem = new stockitem(req.body);
+    console.log(newitem);
     newitem.save(function (err, inserteditem) {       //save into mongodb
         if (err) {
             console.log(err);
@@ -186,7 +187,7 @@ router.delete('/deletestock/:id', function (req, res) {
     });
 });
 
-/*updating stock item*/
+/*updating stock item (reducing)*/
 router.put('/updatestock/:id', function (req, res) {
     console.log('updating a stock item');
     var newamount = new stockitem(req.body);
@@ -227,4 +228,25 @@ router.get('/getfinisheditems', function (req, res) {
         });
 });
 
+/*updating stock item info*/
+router.put('/updateiteminfo/:id', function (req, res) {
+    console.log('updating a stock item');
+    var newinfo = new stockitem(req.body);
+    stockitem.findByIdAndUpdate(req.params.id,
+        {
+            $set: { itemID: newinfo.itemID ,
+                    itemName: newinfo.itemName}
+        },
+        {
+            new: true      //to get the updated stock object if false it will give the previous values
+        },
+        function (err, updatedamount) {
+            if (err) {
+                res.send("Error updating amount");
+            } else {
+                res.json(updatedamount);
+            }
+        }
+    );
+});
 module.exports = router;

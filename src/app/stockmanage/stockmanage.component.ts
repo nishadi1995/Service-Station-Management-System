@@ -10,7 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class StockmanageComponent implements OnInit {
 
   stockitems: any;
-  finishedstockitems:any;
+  finishedstockitems: any;
   deleteMessage: string;
   closeResult: string;
 
@@ -25,7 +25,7 @@ export class StockmanageComponent implements OnInit {
       })
 
     this._stockservice.getfinisheditems()
-      .subscribe((fstock)=>{
+      .subscribe((fstock) => {
         this.finishedstockitems = fstock;
       })
 
@@ -38,20 +38,37 @@ export class StockmanageComponent implements OnInit {
     alert("Successfully added an item!");
     document.forms['form_stock_add'].reset();
     this.stockitems.splice(0, 0, formData);  //add to table ui without reloading the table  
+
+
   }
 
+
   reduceItem(form) {
+
+    this._stockservice.getstock()
+      .subscribe((stock) => {
+        this.stockitems = stock;
+        console.log(stock);
+      });
+
+
     var formData = form.value;
 
-    /*updating \stock table ui*/
-    for (let i = 0; i < this.stockitems.length; ++i) {
-      if (this.stockitems[i].itemID === formData.itemID) {
-        this.stockitems[i].availableAmount -= formData.itemAmount;
-        console.log(this.stockitems[i]._id);
-        this._stockservice.updatestock(this.stockitems[i]._id,this.stockitems[i].availableAmount)
-        break
+    /*used a setTimeout to give the time to get the stock items from DB otherwise for loop will execute first*/
+    /*updating stock table without reloading*/
+    setTimeout(() => {
+      for (let i = 0; i < this.stockitems.length; ++i) {
+        if (this.stockitems[i].itemID === formData.itemID) {
+          this.stockitems[i].availableAmount -= formData.itemAmount;
+          console.log(this.stockitems[i]._id);
+          this._stockservice.updatestock(this.stockitems[i]._id, this.stockitems[i].availableAmount);
+          break
+        }
       }
-    }
+    }, 2000);
+
+    /*need to get all the stock items before updating, reason: if we try to update an item without refreshing after adding
+    that stockitems array doesn't contain the _id of the newly added item*/
   }
 
   deleteItem(itemid) {
@@ -78,17 +95,23 @@ export class StockmanageComponent implements OnInit {
     this.modalService.open(content, { size: 'lg' })
   }
 
+  updateItem(id,form){
+    var formData = form.value;
+    console.log(formData.itemName);
+    this._stockservice.updateItemInfo(id,formData);
+  }
+
   /*change colors in notification bars*/
-  getColor(limit){
-   switch (limit%4){
-    case 0:
-     return '#9f093e';
-    case 1:
-     return '#006a35';
-    case 2:
-     return '#004080';
-    case 3:
-    return '#770077';
+  getColor(limit) {
+    switch (limit % 4) {
+      case 0:
+        return '#9f093e';
+      case 1:
+        return '#006a35';
+      case 2:
+        return '#004080';
+      case 3:
+        return '#770077';
     }
   }
 
