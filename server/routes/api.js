@@ -249,4 +249,21 @@ router.put('/updateiteminfo/:id', function (req, res) {
         }
     );
 });
+
+router.get('/getVehicle/:vnum',function(req,res){
+    console.log('getting vehicle details');
+    console.log(req.params.vnum)
+    vehicle.find({
+        $expr:{ $eq:["$number",req.params.vnum]}
+
+    }).exec(function (err, vehicle) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(vehicle);
+            return vehicle;
+        }
+    });
+});
+
 module.exports = router;

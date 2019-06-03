@@ -29,7 +29,7 @@
                   <td *ngIf="x.date == today && x.approved == true" class="text-center">{{x.username}}</td>
                   <td *ngIf="x.date == today && x.approved == true" class="text-center">{{x.vehnum}}</td>
                   <td *ngIf="x.date == today && x.approved == true" class="text-center">
-                    <button class="btn btn-info btn-round" (click)="openLg(report)" style="margin-right: 10px">Generate
+                    <button class="btn btn-info btn-round" (click)="openLg(report); getvehDetails(x.vehnum)" style="margin-right: 10px">Generate
                       Report</button>
                     <button class="btn btn-info btn-round" (click)="openLg(info)" style="margin-right: 10px">Update
                       Report</button>
@@ -46,19 +46,20 @@
                     <div class="card-body">
                       <div class="row" style="padding:5px">
                         <div class="col-6">
-                          <strong>Item ID : </strong><br>{{item.itemID}}<br>
-                          <strong>Item Name : </strong><br>{{item.itemName}}<br>
-                          <strong>Amount Bought : </strong><br>{{item.itemAmount}}<br>
-                          <strong> available Amount : </strong><br>{{item.availableAmount}}<br>
+                          <h4><strong>Vehicle details:</strong></h4><br>
+                          <strong>Vehicle Number : </strong>{{x.itemID}}<br>
+                          <strong>Owner's Name : </strong>{{x.username}}<br>
+                          <strong>Vehicle Type : </strong>{{x.brand}}<br>
+                          <strong> available Amount : </strong><br>{{availableAmount}}<br>
                         </div>
                         <div class="col-5">
-                          <strong>Total Cost : </strong><br>{{item.totalCost}}<br>
-                          <strong>Date : </strong><br>{{item.totalCost}}<br>
-                          <strong>Notification Limit : </strong><br>{{item.limit}}<br>
+                          <strong>Total Cost : </strong><br>{{totalCost}}<br>
+                          <strong>Date : </strong><br>{{totalCost}}<br>
+                          <strong>Notification Limit : </strong><br>{{limit}}<br>
 
                         </div><br>
                         <div class="col-4">
-                          <strong>Dealer's Name : </strong>{{item.dealersName}}<br>
+                          <strong>Dealer's Name : </strong>{{dealersName}}<br>
                         </div>
                         <div class="col-4">
                         </div>
