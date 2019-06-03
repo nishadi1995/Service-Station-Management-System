@@ -1,5 +1,94 @@
 <app-sidebar></app-sidebar>
 
+<div class="main-content">
+  <div class="w3-main" style="margin-left:315px;margin-top:82px;">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Service history for today's appointments</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-full-width table-responsive" style="height :400px; overflow-y: auto; overflow-x: hidden">
+            <table class="table">
+              <thead class="text-primary">
+                <th class="text-center">
+                  Owner's Name
+                </th>
+                <th class="text-center">
+                  Vehicle Number
+                </th>
+                <th class="text-center">
+                  Quick Actions
+                </th>
+
+                <th>Cancel</th>
+
+              </thead>
+              <tbody>
+                <tr *ngFor='let x of name_vehicle'>
+                  <td *ngIf="x.date == today && x.approved == true" class="text-center">{{x.username}}</td>
+                  <td *ngIf="x.date == today && x.approved == true" class="text-center">{{x.vehnum}}</td>
+                  <td *ngIf="x.date == today && x.approved == true" class="text-center">
+                    <button class="btn btn-info btn-round" (click)="openLg(report)" style="margin-right: 10px">Generate
+                      Report</button>
+                    <button class="btn btn-info btn-round" (click)="openLg(info)" style="margin-right: 10px">Update
+                      Report</button>
+                    <button class="btn btn-info btn-round" (click)="openLg(info)">Add New Service</button>
+                  </td>
+
+                  <ng-template #report let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                      <h5 class="modal-title text-center"><b>{{x.vehnum}} :: Service History</b></h5>
+                      <button type="button" class="close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="card-body">
+                      <div class="row" style="padding:5px">
+                        <div class="col-6">
+                          <strong>Item ID : </strong><br>{{item.itemID}}<br>
+                          <strong>Item Name : </strong><br>{{item.itemName}}<br>
+                          <strong>Amount Bought : </strong><br>{{item.itemAmount}}<br>
+                          <strong> available Amount : </strong><br>{{item.availableAmount}}<br>
+                        </div>
+                        <div class="col-5">
+                          <strong>Total Cost : </strong><br>{{item.totalCost}}<br>
+                          <strong>Date : </strong><br>{{item.totalCost}}<br>
+                          <strong>Notification Limit : </strong><br>{{item.limit}}<br>
+
+                        </div><br>
+                        <div class="col-4">
+                          <strong>Dealer's Name : </strong>{{item.dealersName}}<br>
+                        </div>
+                        <div class="col-4">
+                        </div>
+                      </div>
+                      <div class="row" style="padding:5px">
+                      </div>
+                      <div class="modal-footer">
+                        <div class="divider"></div>
+                        <div class="right-side">
+                          <button type="button" class="btn" style="color: red" (click)="c('Close click')">Dismiss</button>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+
+                  <td *ngIf="x.date == today && x.approved == true" class="text-center">
+                    <button type="button" rel="tooltip" title="Delete Item From Stock" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral"
+                      (click)="deleteItem(item._id)">
+                      <i class="fa fa-remove"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="content">
   <div class="notification green">
     <div class="info">
@@ -24,7 +113,8 @@
   <div class="notification blue">
     <div class="info">
       <h1><a href="https://goo.gl/I8lNLu">Windows 10</a> preview is here</h1>
-      <p>Windows 10 represents the first step of a whole new generation of Windows. Windows 10 unlocks new experiences for customers to work, play and connect.</p>
+      <p>Windows 10 represents the first step of a whole new generation of Windows. Windows 10 unlocks new experiences
+        for customers to work, play and connect.</p>
       <a href="https://goo.gl/Z83wbD" class="button">Full story</a><a href="#" class="button gray">Dismiss</a>
     </div>
     <div class="icon" style="background-color: green">
