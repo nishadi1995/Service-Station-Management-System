@@ -250,11 +250,11 @@ router.put('/updateiteminfo/:id', function (req, res) {
     );
 });
 
+/*get a particular vehicle*/
 router.get('/getVehicle/:vnum',function(req,res){
     console.log('getting vehicle details');
-    console.log(req.params.vnum)
     vehicle.find({
-        $expr:{ $eq:["$number",req.params.vnum]}
+       $expr:{ $eq:["$number",req.params.vnum]}         //number:req.params.vnum
 
     }).exec(function (err, vehicle) {
         if (err) {
@@ -264,6 +264,51 @@ router.get('/getVehicle/:vnum',function(req,res){
             return vehicle;
         }
     });
+});
+
+/*update service information */
+router.put('/updateservice/:id', function (req, res) {
+    console.log('updating service');
+    var newinfo = new vehicle(req.body);
+    console.log(newinfo.specialnotes2)
+    vehicle.findByIdAndUpdate(req.params.id,
+        {
+            $set: {"$services.$[]": newinfo.specialnotes2 
+                    }
+        },
+        {
+            new: true      //to get the updated stock object if false it will give the previous values
+        },
+        function (err, updateddetails) {
+            if (err) {
+                res.send("Error updating details");
+            } else {
+                res.json(updateddetails);
+            }
+        }
+    );
+});
+
+/*update status of the service*/
+router.put('/statusUpdate/:vnum', function(req,res){
+    console.log("updating status");
+    var appnt = new appointment(req.body);
+    appointment.findOneAndUpdate(
+        {"vehnum":req.params.vnum},
+        {
+        $set :{status: appnt.status}
+        },
+    {
+        new: true      //to get the updated stock object if false it will give the previous values
+    },
+    function (err, updatedstatus) {
+        if (err) {
+            res.send("Error updating status");
+        } else {
+            res.json(updatedstatus);
+        }
+    }
+    )
 });
 
 module.exports = router;

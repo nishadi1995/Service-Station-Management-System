@@ -28,20 +28,20 @@ export class AdmindashComponent implements OnInit {
   appointments: Appointment[];
   post: Post;
   myDate: Date;
-  today:String;
+  today: String;
 
   Gcount = 0;
   Scount = 0;
   Pcount = 0;
   Fcount = 0;
 
-  constructor(private router: Router, private translate:TranslateService,private _postservice: PostService, private _appointmentservice: AppointmentsService) { }
+  constructor(private router: Router, private translate: TranslateService, private _postservice: PostService, private _appointmentservice: AppointmentsService) { }
 
   /*doughnut chart data*/
   public doughnutChartLabels = ['Gold', 'Silver', 'Platinum', 'Free'];
   public doughnutChartData = [this.Gcount, this.Scount, this.Pcount, this.Fcount];
   public doughnutChartType = 'doughnut';
-  
+
   /*bar chart data*/
   public barChartOptions = {
     scaleShowVerticalLines: false,
@@ -56,7 +56,7 @@ export class AdmindashComponent implements OnInit {
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
 
-  
+
   ngOnInit() {
 
     setInterval(() => {         //replaced function() by ()=>
@@ -77,17 +77,17 @@ export class AdmindashComponent implements OnInit {
       .subscribe((resappn: Appointment[]) => {
         this.appointments = resappn;
         console.log(this.appointments);
-        this.today= new Date().toJSON().slice(0,10).replace(/-/g,'/');
+        this.today = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
         //console.log(resappn[0].package);  can directly use resappn if so we don't need Appointment interface
 
         this.appointments.forEach(element => {
-          if (element.package == "Gold" && this.today== String(element.date)) {
+          if (element.package == "Gold" && this.today == String(element.date)) {
             this.Gcount++;
-          } else if (element.package == "Silver" && this.today== String(element.date)) {
+          } else if (element.package == "Silver" && this.today == String(element.date)) {
             this.Scount++;
-          } else if (element.package == "Platinum" && this.today== String(element.date)) {
+          } else if (element.package == "Platinum" && this.today == String(element.date)) {
             this.Pcount++;
-          } else if (element.package == "Free"&& this.today== String(element.date)) {
+          } else if (element.package == "Free" && this.today == String(element.date)) {
             this.Fcount++;
           }
         });
@@ -106,6 +106,15 @@ export class AdmindashComponent implements OnInit {
   genreports() {
     console.log("report");
     this.router.navigate(["report"]);
+  }
+
+  done(vehnum) {
+    console.log(vehnum)
+    this._appointmentservice.updatestatus(vehnum,"completed")
+  }
+
+  decline(vehnum) {
+    this._appointmentservice.updatestatus(vehnum,"canceled")
   }
 
   switchLanguage(language: string) {

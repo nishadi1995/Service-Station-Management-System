@@ -2,8 +2,9 @@ export interface Appointment {
     username:String;
     date : Date;
     time:String;
-    package:String,
-    approved:boolean
+    package:String;
+    approved:boolean;
+    status:String
  }
  
  /*this is not neccessary to get or send data. But sometimes we may need an interface

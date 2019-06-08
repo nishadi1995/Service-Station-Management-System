@@ -6,7 +6,8 @@ const appointmentSchema = new Schema({
     username :String,
     date: String,
     time:String,
-    package:String
+    package:String,
+    status:String
 });
 
 //(name of the model, a appointment model is going to have username,date,time and package, collection name in db)

@@ -21,4 +21,12 @@ export class AppointmentsService {
   public getappointments():Observable<Appointment[]>{
     return this.http.get<Appointment[]>(`${this.url}/appointments`);
   }
+
+  public updatestatus(vehnum,status){
+    const obj={
+      status:status                              //just passing the status to api doesn't work.if so request body is empty, So have to pass an object
+    }
+    return this.http.put(`${this.url}/statusUpdate/${vehnum}`,obj)
+    .subscribe(res=>console.log("done status updating"));
+  }
 }

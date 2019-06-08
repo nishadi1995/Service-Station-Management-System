@@ -13,6 +13,7 @@ export class ReportComponent implements OnInit {
     name_vehicle: any;
     vehicle_details:any;
     today: String;
+    index=0;
 
     constructor(private _appointmentservice: AppointmentsService, private modalService: NgbModal, private _vehicleservice: VehicleService) { }
 
@@ -33,8 +34,14 @@ export class ReportComponent implements OnInit {
         this._vehicleservice.getVehicle(vnum)
         .subscribe((vehicleDetails)=>{
           this.vehicle_details = vehicleDetails;
-          console.log(this.vehicle_details)
+          console.log(this.vehicle_details);
         })
     }
+
+    updateService(id,form){
+       var formData=form.value;
+       this._vehicleservice.updateServiceDetails(id,formData);
+    }
+
 
 }

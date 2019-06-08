@@ -3,9 +3,11 @@ const Schema = mongoose.Schema;
 
 //creating a new schema for posts data in mongodb 
 const vehicleSchema = new Schema({
-    model :String,
     number: String,
-    regTo:String
+    regTo:String,
+    brand:String,
+    services:Array,
+    specialnotes2:String
 });
 
 //(name of the model, a vehicle model is going to have model,number and regTo, collection name in db)
