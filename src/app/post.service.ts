@@ -54,7 +54,8 @@ export class PostService {
       let res1= this.http.get(`${this.url}/count1`);
       let res2= this.http.get(`${this.url}/count2`);
       let res3= this.http.get(`${this.url}/count3`);
-      return forkJoin([res1,res2,res3]);
+      let res4= this.http.get(`${this.url}/count4`)
+      return forkJoin([res1,res2,res3,res4]);
     }
 
     

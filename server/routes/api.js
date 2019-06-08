@@ -133,6 +133,22 @@ router.get('/count3', function (req, res) {
     });
 })
 
+/*getting number of appointments approved*/
+router.get('/count4', function (req, res) {
+    console.log("geting approved appointment count");
+    appointment.countDocuments({
+        $expr:{ $eq:["$approved",true]}         //count only the approved appointments
+        
+     }).exec(function (err, number) {
+        if (err) {
+            res.send("Error getting count");
+        } else {
+            res.json(number);
+            return number;
+        }
+    });
+})
+
 /*getting all the appointments*/
 router.get('/appointments', function (req, res) {
     console.log("getting appointments");
@@ -310,5 +326,25 @@ router.put('/statusUpdate/:vnum', function(req,res){
     }
     )
 });
+
+router.post('/addService/:id',function(req,res){
+    var newservice = new vehicle(req.body);
+    vehicle.update(
+        {"_id":req.params.id},
+        {
+            $push:{services:[[newservice.date,
+                newservice.servicetype,
+                newservice.itemsadded,
+                newservice.totalcharge,
+                newservice.specialnotes]]}
+        },
+        function (err, insertedservice) {          
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(insertedservice);
+        }
+    })
+})
 
 module.exports = router;

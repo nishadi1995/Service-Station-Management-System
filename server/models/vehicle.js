@@ -7,6 +7,11 @@ const vehicleSchema = new Schema({
     regTo:String,
     brand:String,
     services:Array,
+    date:String,
+    servicetype:String,
+    itemsadded:String,
+    totalcharge:String,
+    specialnotes:String,
     specialnotes2:String
 });
 

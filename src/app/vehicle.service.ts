@@ -18,4 +18,10 @@ export class VehicleService {
     return this.http.put(`${this.url}/updateservice/${id}`, formdata)
     .subscribe(res => console.log("Done updating service info"))
   }
+
+  addNewService(id,formData){
+    return this.http.post(`${this.url}/addService/${id}`,formData)
+    .subscribe(res=>console.log("Done adding service"))
+
+  }
 }

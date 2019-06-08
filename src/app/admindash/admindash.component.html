@@ -24,12 +24,12 @@
       <hr>
       <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
         onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-      <a class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Overview</a>
-      <a class="w3-bar-item w3-button w3-padding" (click)="managestock()"><i class="fa fa-users fa-fw"></i> 
+      <a class="w3-bar-item w3-button w3-padding"><i class="fa fa-car fa-fw"></i>  Overview</a>
+      <a class="w3-bar-item w3-button w3-padding" (click)="managestock()"><i class="fa fa-bullseye fa-fw"></i> 
         Stock Management</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="genreports()"><i class="fa fa-eye fa-fw"></i> 
         Genarate Reports</a>
-      <a class="w3-bar-item w3-button w3-padding" (click)="yearPlanLogin()"><i class="fa fa-bullseye fa-fw"></i>
+      <a class="w3-bar-item w3-button w3-padding" (click)="yearPlanLogin()"><i class="fa fa-users fa-fw"></i>
         View User</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="adminForumLogin()"><i class="fa fa-book fa-fw"></i> 
         Forum</a>
@@ -96,7 +96,7 @@
         <div class="w3-container w3-orange w3-text-white w3-padding-16">
           <div class="w3-left"><i class="fa fa-book fa-fw w3-xxxlarge"></i></div>
           <div class="w3-right">
-            <h3>{{result1}}</h3>
+            <h3>{{numapp}}</h3>
           </div>
           <div class="w3-clear"></div>
           <h4>Appointments</h4>
@@ -192,31 +192,7 @@
         </div>
       </div>
     </div>
-
-    <div class="w3-container">
-      <h5><b>Staff ID Numbers</b></h5>
-      <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Time</th>
-            <th>Package</th>
-          </tr>
-        </thead>
-
-        <li *ngFor="let x of appointmentsblabla | async">
-          <tr>
-            <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
-            <td>{{x.username}}</td>
-            <td>{{x.time}}</td>
-            <td>{{x.package}}</td>
-          </tr>
-        </li>
-
-      </table>
-      <br>
-    </div>
+        
     <hr>
 
     <!---->

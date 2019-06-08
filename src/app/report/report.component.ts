@@ -44,4 +44,16 @@ export class ReportComponent implements OnInit {
     }
 
 
+    getColor(status){
+        if (status=="canceled"){
+            return 'red'
+        }else{
+            return 'green'
+        }
+    }
+
+    addService(id,form){
+        var formData = form.value;
+        this._vehicleservice.addNewService(id,formData);
+    }
 }

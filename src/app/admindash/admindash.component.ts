@@ -24,7 +24,8 @@ export class AdmindashComponent implements OnInit {
   numposts: number;
   numveh: number;
   numusers: number;
-
+  numapp: number;
+  
   appointments: Appointment[];
   post: Post;
   myDate: Date;
@@ -69,6 +70,7 @@ export class AdmindashComponent implements OnInit {
         this.numposts = this.result1[0];
         this.numusers = this.result1[1];
         this.numveh = this.result1[2];
+        this.numapp = this.result1[3]
       });
     console.log("got #posts");
 
