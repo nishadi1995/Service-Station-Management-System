@@ -14,7 +14,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="header text-center" style=" margin : 5px">
-        <h2 class="title" style="margin-top : 15px;margin-bottom: 0px">Rio Top Service Station</h2>
+        <h2 class="title" style="margin-top : 15px;margin-bottom: 0px">Rio Top {{'Service Station'|translate}}</h2>
       </div>
     </nav>
 
@@ -24,25 +24,25 @@
       <hr>
       <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
         onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-      <a class="w3-bar-item w3-button w3-padding"><i class="fa fa-car fa-fw"></i>  Overview</a>
+      <a class="w3-bar-item w3-button w3-padding"><i class="fa fa-car fa-fw"></i>  {{'Overview'|translate}}</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="managestock()"><i class="fa fa-bullseye fa-fw"></i> 
-        Stock Management</a>
+        {{'Stock Management'|translate}}</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="genreports()"><i class="fa fa-eye fa-fw"></i> 
-        Genarate Reports</a>
+        {{'Genarate Reports'|translate}}</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="yearPlanLogin()"><i class="fa fa-users fa-fw"></i>
-        View User</a>
+        {{'View User'|translate}}</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="adminForumLogin()"><i class="fa fa-book fa-fw"></i> 
-        Forum</a>
-      <a class="w3-bar-item w3-button w3-padding" (click)="salaryLogin()"><i class="fa fa-bell fa-fw"></i>  Appointment
-        Management</a>
-      <a class="w3-bar-item w3-button w3-padding" (click)="feesLogin()"><i class="fa fa-bank fa-fw"></i>  Bla bla</a>
-      <a class="w3-bar-item w3-button w3-padding" (click)="leavesLogin()"><i class="fa fa-history fa-fw"></i>Bla bla</a>
+        {{'Forum'|translate}}</a>
+      <a class="w3-bar-item w3-button w3-padding" (click)="salaryLogin()"><i class="fa fa-bell fa-fw"></i>  {{'Appointment
+        Management'|translate}}</a>
+      <a class="w3-bar-item w3-button w3-padding" (click)="feesLogin()"><i class="fa fa-bank fa-fw"></i> {{'Staff Management'|translate}}</a>
       <a class="w3-bar-item w3-button w3-padding" (click)="settingsLogin()"><i class="fa fa-cog fa-fw"></i> 
-        Settings</a>
+        {{'Settings'|translate}}</a>
       <br><br>
       <ul>
         <button class="btn btn-info btn-round" style="width:90%" (click)="switchLanguage('en')">Switch to
-          English</button>
+          English</button> </ul>
+      <ul>
         <button class="btn btn-info btn-round" style="width:90%" (click)="switchLanguage('lk')">සිංහල පරිවර්තනය</button>
       </ul>
     </div>
@@ -58,7 +58,7 @@
 
     <hr>
     <header class="w3-container" style="padding-top:22px">
-      <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+      <h5><b><i class="fa fa-dashboard"></i> {{'Dashboard'| translate}}</b></h5>
     </header>
 
     <div class="w3-row-padding w3-margin-bottom">
@@ -79,7 +79,7 @@
             <h3>{{numusers}}</h3>
           </div>
           <div class="w3-clear"></div>
-          <h4>Users</h4>
+          <h4>{{'Users'| translate}}</h4>
         </div>
       </div>
       <div class="w3-quarter">
@@ -89,7 +89,7 @@
             <h3>{{numveh}}</h3>
           </div>
           <div class="w3-clear"></div>
-          <h4>Vehicles</h4>
+          <h4>{{'Vehicles'| translate}}</h4>
         </div>
       </div>
       <div class="w3-quarter">
@@ -99,13 +99,19 @@
             <h3>{{numapp}}</h3>
           </div>
           <div class="w3-clear"></div>
-          <h4>Appointments</h4>
+          <h4>{{'Appointments'| translate}}</h4>
         </div>
       </div>
     </div>
 
+    <br>
+    <div class="text-center">
+      <h5> <strong>{{'Revenue Comparison'| translate}}</strong></h5>
+    </div>
+    <br>
+
     <div clas="row">
-      <div class="col-10">
+      <div class="col-12">
         <div class="card card-chart">
           <div class="card-header">
             <div class="row">
@@ -116,12 +122,9 @@
           </div>
         </div>
       </div>
-
-      <div class="col-4">
-
-      </div>
-
     </div>
+
+    <br><br>
 
     <div class="row">
       <div class="col-6">
@@ -129,7 +132,7 @@
           <div class="card-header">
             <div class="row">
               <div class="col-5">
-                <h4 class="card-title">Today's Appointments</h4>
+                <h4 class="card-title">{{'Todays Appointments'| translate}}</h4>
               </div>
               <div class="col-7">
                 <h4 class="card-title">{{myDate | date:'MMM d, y, h:mm:ss a'}}</h4>
@@ -146,24 +149,24 @@
       <div class="col-6">
         <div class="card">
           <div class="card-header">
-            <h4>Today's Appointments</h4>
+            <h4>{{'Todays Appointments'| translate}}</h4>
           </div>
           <div class="card-body">
-            <div class="table-full-width table-responsive" style="height :400px; overflow-y: auto; overflow-x: hidden">
+            <div class="table-full-width table-responsive">
               <table class="table">
                 <thead class="text-primary">
                   <th class="text-center">
-                    Username
+                    {{'Username'| translate}}
                   </th>
                   <th class="text-center">
-                    Time
+                    {{'Time'| translate}}
                   </th>
                   <th class="text-center">
-                    Package
+                    {{'Package'| translate}}
                   </th>
 
-                  <th>Cancel</th>
-                  <th>Done</th>
+                  <th>{{'Cancel'| translate}}</th>
+                  <th>{{'Done'| translate}}</th>
 
                 </thead>
                 <tbody>
@@ -179,8 +182,7 @@
                     </td>
                     <td *ngIf="x.approved == true && x.date == today">
                       <button type="button" rel="tooltip" title="appointment done"
-                        class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral"
-                        (click)="done(x.vehnum)">
+                        class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" (click)="done(x.vehnum)">
                         <i class="fa fa-check"></i>
                       </button>
                     </td>
@@ -192,150 +194,34 @@
         </div>
       </div>
     </div>
-        
+
     <hr>
-
-    <!---->
-
-    <!--2-->
-    <div class="col-6">
-      <div class="card card-chart">
-        <div class="card-header">
-          <div class="row">
-            <div class="col-5">
-              <h4 class="card-title">System Statistics</h4>
-            </div>
-            <div class="col-7">
-              <h4 class="card-title">{{myDate | date:'MMM d, y, h:mm:ss a'}}</h4>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-4">
-              <h5><strong>{{(totalMemCount | async)?.total}} </strong>Total Users</h5><br>
-              <h6><strong>{{(totalMemCount | async)?.admins}} </strong>System Admins</h6><br>
-              <h6><strong>{{(totalMemCount | async)?.farmers}} </strong>Farmers</h6><br>
-              <h6><strong>{{(totalMemCount | async)?.retailers}} </strong>Retailers</h6><br>
-              <h6><strong>{{(totalMemCount | async)?.both}} </strong>Dual Category</h6><br>
-              <h5><strong>{{(totalSaleCount | async)?.total}} </strong>Total Orders</h5><br>
-              <h6><strong>{{(totalSaleCount | async)?.sale}} </strong>Total Sales</h6><br>
-              <h6><strong>{{(totalSaleCount | async)?.want}} </strong>Total Wanted</h6><br>
-              <h5><strong>{{(totalPostCount | async)?.total}} </strong>Total Posts</h5><br>
-            </div>
-            <div class="col-8">
-              <div class="row">
-                <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
-                  [chartType]="doughnutChartType"></canvas>
-              </div>
-              <div class="row">
-                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-                  [legend]="barChartLegend" [chartType]="barChartType">
-                </canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
 
     <!--Table-->
     <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-header">
-            <i class="fa fa-align-justify"></i> Appointments to be approved
-          </div>
-          <div class="card-body">
-            <table class="table table-bordered table-striped table-sm">
-              <thead>
-                <tr>
-                  <th>Username</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Package</th>
-                  <th>Approve/</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <li *ngFor="let x of appointments">
-                  <tr>
-                    <td>{{x.username}}</td>
-                    <td>{{x.date}}</td>
-                    <td>{{x.time}}</td>
-                    <td>
-                      <span class="badge badge-success">{{x.package}}</span>
-                    </td>
-                    <td><button type="submit"></button></td>
-                  </tr>
-                </li>
-
-                <tr>
-                  <td>Zbyněk Phoibos</td>
-                  <td>2012/02/01</td>
-                  <td>Staff</td>
-                  <td>
-                    <span class="badge badge-danger">Banned</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Einar Randall</td>
-                  <td>2012/02/01</td>
-                  <td>Admin</td>
-                  <td>
-                    <span class="badge badge-secondary">Inactive</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Félix Troels</td>
-                  <td>2012/03/01</td>
-                  <td>Member</td>
-                  <td>
-                    <span class="badge badge-warning">Pending</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <nav>
-              <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
+      
+        
 
       <br>
 
       <div class="w3-container w3-dark-grey w3-padding-32">
         <div class="w3-row">
           <div class="w3-container w3-third">
-            <h5 class="w3-bottombar w3-border-green">Address</h5>
-            <p> “Singithi Kids Paradise Early Childhood Development Center,”</p>
+            <h5 class="w3-bottombar w3-border-green">{{'Address'| translate}}</h5>
+            <p> “Rio Top Service Station”</p>
             <p>Henpitagedara,</p>
-            <p>Dunagaha.</p>
+            <p>Kurunagala.</p>
           </div>
 
           <div class="w3-container w3-third">
-            <h5 class="w3-bottombar w3-border-red">Contact</h5>
+            <h5 class="w3-bottombar w3-border-red">{{'Contact'| translate}}</h5>
             <p>0112 568 962</p>
-            <p>sigithikids@gmail.com</p>
+            <p>riotop@gmail.com</p>
           </div>
 
           <div class="w3-container w3-third">
-            <h5 class="w3-bottombar w3-border-orange">vision</h5>
-            <p>"Our goal is to activate the child's own natural desire to learn and to prepare them not only
+            <h5 class="w3-bottombar w3-border-orange">{{vision| translate}}</h5>
+            <p>"Our goal is to provide a good quality service to our customers and to give a trusted service
               for the school but also for the life !!"</p>
           </div>
         </div>

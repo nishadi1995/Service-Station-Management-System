@@ -9,6 +9,7 @@ const user = require('../models/user');
 const vehicle = require('../models/vehicle');
 const appointment = require('../models/appointment');
 const stockitem = require('../models/stockitem');
+const revenue = require('../models/revenue');
 
 /*db connection string*/
 const db = "mongodb+srv://Nishadi:123456781@@cluster0-7dpxi.mongodb.net/test?retryWrites=true";
@@ -147,6 +148,20 @@ router.get('/count4', function (req, res) {
             return number;
         }
     });
+})
+
+/*get profit and expense */
+router.get('/getRevenue',function(req,res){
+    revenue.find({})
+    .exec(function (err, appntm) {
+        if (err) {
+            console.log("error retriving");
+        } else {
+            res.json(appntm);
+            return appntm;
+        }
+    });
+
 })
 
 /*getting all the appointments*/

@@ -29,4 +29,8 @@ export class AppointmentsService {
     return this.http.put(`${this.url}/statusUpdate/${vehnum}`,obj)
     .subscribe(res=>console.log("done status updating"));
   }
+
+  public getRevenue(){
+    return this.http.get(`${this.url}/getRevenue`);
+  }
 }

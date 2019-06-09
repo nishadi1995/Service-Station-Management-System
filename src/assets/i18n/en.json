@@ -1,3 +1,19 @@
 {
-    "Forum Posts":"Forum Posts"
+    "Forum Posts":"Forum Posts",
+    "Users":"Users",
+    "Vehicles":"Vehicles",
+    "Appointments":"Appointments",
+    "Revenue Comparison":"Revenue Comparison",
+    "Overview":"Overview",
+    "Stock Management":"Stock Management",
+    "Genarate Reports":"Genarate Reports",
+    "View User":"View User",
+    "Forum":"Forum",
+    "Appointment Management":"Appointment Management",
+    "Staff Management":"Staff Management",
+    "Settings":"Settings",
+    "Dashboard":"Dashboard",
+    "Service Station":"Service Station",
+    "Profit":"Profit",
+    "expense":"expense"
 }

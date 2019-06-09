@@ -1,3 +1,21 @@
 {
-    "Forum Posts":"සංසද තනතුරු"
+    "Forum Posts":"සංසද තනතුරු",
+    "Users":"සංසද තනතුරු",
+    "Vehicles":"වාහන",
+    "Appointments":"පත්වීම්",
+    "Revenue Comparison":"ආදායම වියදම සැසඳීම",
+    "Overview":"විශ්ලේෂණය",
+    "Stock Management":"ගබඩා කළමනාකරණය",
+    "Genarate Reports":"වාර්තා සැකසුම්",
+    "View User":"පරිශීලක බැලීම",
+    "Forum":"පෝරමය",
+    "Appointment Management":"පත්වීම් කළමනාකරණය",
+    "Staff Management":"කාර්ය මණ්ඩලය කළමනාකරණය",
+    "Settings":"සැකසුම්",
+    "Dashboard":"උපකරණ පුවරුව",
+    "Service Station":"සේවා ස්ථානය",
+    "Profit":"ආදායම",
+    "expense":"වියදම"
+
+    
 }

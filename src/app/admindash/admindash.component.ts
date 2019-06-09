@@ -25,7 +25,8 @@ export class AdmindashComponent implements OnInit {
   numveh: number;
   numusers: number;
   numapp: number;
-  
+  index:any;
+
   appointments: Appointment[];
   post: Post;
   myDate: Date;
@@ -36,6 +37,9 @@ export class AdmindashComponent implements OnInit {
   Pcount = 0;
   Fcount = 0;
 
+  barchart:any;
+  expense = [];
+  profit=[]
   constructor(private router: Router, private translate: TranslateService, private _postservice: PostService, private _appointmentservice: AppointmentsService) { }
 
   /*doughnut chart data*/
@@ -49,12 +53,12 @@ export class AdmindashComponent implements OnInit {
     responsive: true
   };
 
-  public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels = ['2012', '2013', '2014', '2015', '2016', '2017', '2018'];
   public barChartType = 'bar';
   public barChartLegend = true;
   public barChartData = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+    { data: this.profit, label: 'Profit' },
+    { data: this.expense, label: 'expense' }
   ];
 
 
@@ -74,6 +78,17 @@ export class AdmindashComponent implements OnInit {
       });
     console.log("got #posts");
 
+    this._appointmentservice.getRevenue()
+        .subscribe((revenue) => {
+        this.barchart = revenue;
+        this.index=0;
+        this.barchart.forEach(element => {
+          this.expense[this.index]=element.expense
+          this.profit[this.index]= element.profit
+          this.index= this.index+1;
+        });
+        console.log(this.expense)
+    });
 
     this._appointmentservice.getappointments()
       .subscribe((resappn: Appointment[]) => {
@@ -95,7 +110,7 @@ export class AdmindashComponent implements OnInit {
         });
         this.doughnutChartData = [this.Gcount, this.Scount, this.Pcount, this.Fcount];
       });
-
+     
     console.log("got appointments");
   }
 
