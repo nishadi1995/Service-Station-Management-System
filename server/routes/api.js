@@ -297,14 +297,28 @@ router.get('/getVehicle/:vnum',function(req,res){
     });
 });
 
+/*get all the vehicles*/
+router.get('/getVehicles',function(req,res){
+    console.log('getting vehicle details');
+    vehicle.find({})
+    .exec(function (err, vehicle) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(vehicle);
+            return vehicle;
+        }
+    });
+});
+
 /*update service information */
 router.put('/updateservice/:id', function (req, res) {
     console.log('updating service');
     var newinfo = new vehicle(req.body);
-    console.log(newinfo.specialnotes2)
+    console.log( newinfo.date0 )
     vehicle.findByIdAndUpdate(req.params.id,
         {
-            $set: {"$services.$[]": newinfo.specialnotes2 
+            $set: {"$services.$[0].$[0]": newinfo.date0
                     }
         },
         {

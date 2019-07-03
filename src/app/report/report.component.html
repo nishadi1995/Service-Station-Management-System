@@ -8,7 +8,7 @@
           <h4>Service history for today's appointments</h4>
         </div>
         <div class="card-body">
-          <div class="table-full-width table-responsive" >
+          <div class="table-full-width table-responsive">
             <table class="table">
               <thead class="text-primary">
                 <th class="text-center">
@@ -166,49 +166,50 @@
                     </div>
 
                     <div class="card-body" *ngFor='let y of vehicle_details'>
-                      <form #frm4="ngForm" (ngSubmit)="addService(y._id,frm4)" name= "form_service_add">
-                          <h4><strong>Service {{index+1}}</strong></h4><br>
-                          <div class="row">
-                            <div class="col-md-4 pr-1">
-                              <div class="form-group">
-                                <label>{{'Date'|translate}}</label>
-                                <input type="text" name="date" class="form-control" ngModel required>
-                              </div>
-                            </div>
-
-                            <div class="col-md-6 pr-1">
-                              <div class="form-group">
-                                <label>{{'Service Type'|translate}}</label>
-                                <input type="text" name="servicetype" class="form-control" ngModel required>
-                              </div>
+                      <form #frm4="ngForm" (ngSubmit)="addService(y._id,frm4)" name="form_service_add">
+                        <h4><strong>Service {{index+1}}</strong></h4><br>
+                        <div class="row">
+                          <div class="col-md-4 pr-1">
+                            <div class="form-group">
+                              <label>{{'Date'|translate}}</label>
+                              <input type="text" name="date" class="form-control" ngModel required>
                             </div>
                           </div>
 
-                          <div class="row">
-                              <div class="col-md-4 pr-1">
-                                <div class="form-group">
-                                  <label>{{'Items Added'| translate}}</label>
-                                  <input type="text" name="itemsadded" class="form-control" ngModel required>
-                                </div>
-                              </div>
-  
-                              <div class="col-md-6 pr-1">
-                                <div class="form-group">
-                                  <label>{{'Total Charge (Rs)'|translate}}</label>
-                                  <input type="text" name="totalcharge" class="form-control" ngModel required>
-                                </div>
-                              </div>
+                          <div class="col-md-6 pr-1">
+                            <div class="form-group">
+                              <label>{{'Service Type'|translate}}</label>
+                              <input type="text" name="servicetype" class="form-control" ngModel required>
                             </div>
+                          </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-md-6 pr-1">
-                                  <div class="form-group">
-                                    <label>{{'Special notes'|translate}}</label>
-                                    <textarea type="text" name="specialnotes" class="form-control" ngModel required></textarea>
-                                  </div>
-                                </div>
+                        <div class="row">
+                          <div class="col-md-4 pr-1">
+                            <div class="form-group">
+                              <label>{{'Items Added'| translate}}</label>
+                              <input type="text" name="itemsadded" class="form-control" ngModel required>
                             </div>
-                            <button class="btn btn-primary btn-round">Add Service</button>
+                          </div>
+
+                          <div class="col-md-6 pr-1">
+                            <div class="form-group">
+                              <label>{{'Total Charge (Rs)'|translate}}</label>
+                              <input type="text" name="totalcharge" class="form-control" ngModel required>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6 pr-1">
+                            <div class="form-group">
+                              <label>{{'Special notes'|translate}}</label>
+                              <textarea type="text" name="specialnotes" class="form-control" ngModel
+                                required></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="btn btn-primary btn-round">Add Service</button>
                       </form>
                     </div>
                   </ng-template>
@@ -223,9 +224,91 @@
         </div>
       </div>
     </div>
+
+    <br>
+
+    <!--show registered vehicles-->
+    <div class="col-7">
+      <div class="card">
+        <div class="card-header">
+          <h2>Registered Vehicles</h2>
+        </div>
+        <div class="card-body">
+          <div class="table-full-width table-responsive" style="height :400px; overflow-y: auto; overflow-x: hidden">
+            <table class="table">
+              <thead class="text-primary">
+                <th>
+                  Vehicle Number
+                </th>
+                <th>
+                  Generate Report
+                </th>
+
+              </thead>
+              <tbody>
+                <tr *ngFor='let y of vehicles'>
+                  <td class="text-center">{{y.number}}</td>
+                  <td class="text-center">
+                    <button type="button" rel="tooltip" title="Generate service report"
+                      class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" style="margin-right: 7px"
+                      (click)="openLg(report2); getvehDetails(y.vehnum)">Generate Report
+                    </button>
+                  </td>
+
+                  <ng-template #report2 let-c="close" let-d="dismiss">
+                      <div class="modal-header">
+                        <h5 class="modal-title text-center"><b>{{y.number}} :: Service History</b></h5>
+                        <button type="button" class="close" (click)="d('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="card-body" *ngFor='let y of vehicle_details'>
+                        <div class="row" style="padding:5px">
+                          <div class="col-6">
+                            <h4><strong>Vehicle details</strong></h4><br>
+                            <strong>Vehicle Number : </strong>{{y.number}}<br>
+                            <strong>Owner's Name : </strong>{{y.regTo}}<br>
+                            <strong>Vehicle Type : </strong>{{y.brand}}<br>
+                            <hr>
+                          </div>
+
+                          <div class="col-5">
+                          </div><br>
+
+                          <div class="col-6" *ngFor='let z of y.services; let index=index'>
+                            <h4><strong>Service {{index+1}}</strong></h4><br>
+                            <strong>Date : </strong>{{z[0]}}<br>
+                            <strong>Service Type : </strong>{{z[1]}}<br>
+                            <strong>Items Added : </strong>{{z[2]}}<br>
+                            <strong>Total Charge (Rs) : </strong>{{z[3]}}<br>
+                            <strong>Special notes : </strong>{{z[4]}}<br>
+                            <hr>
+                          </div>
+
+
+                        </div>
+                        <div class="row" style="padding:5px">
+                        </div>
+                        <div class="modal-footer">
+                          <div class="divider"></div>
+                          <div class="right-side">
+                            <button type="button" class="btn" style="color: red"
+                              (click)="c('Close click')">Dismiss</button>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
- ]
+]
 
 <!-- This is for the preview at codepen.io :) -->

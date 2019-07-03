@@ -8,11 +8,14 @@ const vehicleSchema = new Schema({
     brand:String,
     services:Array,
     date:String,
+    date0:String,
     servicetype:String,
     itemsadded:String,
     totalcharge:String,
-    specialnotes:String,
-    specialnotes2:String
+    specialnotes0:String,
+    specialnotes1:String,
+    specialnotes2:String,
+    specialnotes3:String
 });
 
 //(name of the model, a vehicle model is going to have model,number and regTo, collection name in db)

@@ -14,6 +14,10 @@ export class VehicleService {
     return this.http.get(`${this.url}/getVehicle/${vnum}`)
   }
 
+  getAllVehicles(){
+    return this.http.get(`${this.url}/getVehicles`)
+  }
+
   updateServiceDetails(id,formdata){
     return this.http.put(`${this.url}/updateservice/${id}`, formdata)
     .subscribe(res => console.log("Done updating service info"))

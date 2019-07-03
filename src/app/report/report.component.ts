@@ -12,6 +12,7 @@ export class ReportComponent implements OnInit {
 
     name_vehicle: any;
     vehicle_details:any;
+    vehicles:any;
     today: String;
     index=0;
 
@@ -22,6 +23,12 @@ export class ReportComponent implements OnInit {
         this._appointmentservice.getappointments()
             .subscribe((usernameAndVehivlenum) => {
                 this.name_vehicle = usernameAndVehivlenum;
+          })
+
+          this._vehicleservice.getAllVehicles()
+          .subscribe((vehiclesdetails)=>{
+            this.vehicles = vehiclesdetails;
+            console.log(this.vehicles);
           })
     }
 
