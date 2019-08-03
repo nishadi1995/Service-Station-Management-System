@@ -16,8 +16,8 @@ export class HomepageComponent implements OnInit {
   }
 
   Login(){
-    console.log("login");
-    this.router.navigate(["login"]);
+    console.log("admindash");
+    this.router.navigate(["admindash"]);
   }
 
   Signup(){
